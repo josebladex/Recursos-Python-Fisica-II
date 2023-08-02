@@ -9,7 +9,7 @@ def resolver_sistema_ecuaciones():
     ecuacion2 = Eq(100*I_1 + 200*I_2, 20)
     ecuacion3 = Eq(100*I_1 - 150*I_3 - 300*I_4, 0)
     ecuacion4 = Eq(200*I_2 + 150*I_3 - 51*I_5, 0)
-    ecuacion5 = Eq(I_1 - I_2 + I_4 - I_5, 0)'0'
+    ecuacion5 = Eq(I_1 - I_2 + I_4 - I_5, 0)
 
     # Resolver el sistema de ecuaciones
     solucion = solve((ecuacion1, ecuacion2, ecuacion3, ecuacion4, ecuacion5), (I_1, I_2, I_3, I_4, I_5))
