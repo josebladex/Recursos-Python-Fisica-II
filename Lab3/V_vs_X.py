@@ -20,7 +20,7 @@ def grafico_dispersion_regresion(x, y, pendiente, interseccion):
     plt.plot(x, regresion_y, color='red', label='Regresión lineal')
 
     # Personalizar el gráfico
-    plt.xlabel('X [metros]')
+    plt.xlabel('X [centimetros]')
     plt.ylabel('V [volts]')
     plt.title('Gráfico de Voltaje vs Distancia')
     plt.legend()
@@ -48,4 +48,4 @@ print(f'Ecuación de la recta: y = {pendiente:.3f}x + {interseccion:.3f}')
 print(f'Coeficiente de correlación: {correlacion:.3f}')
 print(f'Ecuación sin intersección: y = {pendiente:.3f}x')
 print(f'Ecuación correspondiente a la definicion de campo electrico V = {pendiente:.3f}*d => V=-Ed')
-print(f'E = {pendiente:.3f} v/m.')
+print(f'E = {pendiente:.3f} v/cm.')

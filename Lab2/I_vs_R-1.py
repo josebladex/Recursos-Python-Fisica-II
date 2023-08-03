@@ -28,7 +28,6 @@ def grafico_dispersion_regresion(x, y, pendiente, interseccion):
     # Mostrar el gráfico
     plt.show()
 
-# Datos de ejemplo (sustituye estos valores por tu propia matriz de datos)
 
 # Valores para corriente vs inverso de resistencia y Corriente vs Resistencia
 R = [10, 20, 30, 40, 50, 60, 70, 80, 90, 97]

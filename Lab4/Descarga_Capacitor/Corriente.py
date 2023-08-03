@@ -44,13 +44,12 @@ print("\nCoeficiente de correlación (R cuadrado):")
 print("R^2 =", r_squared)
 
 # Graficar los datos y la regresión exponencial
-plt.scatter(tiempo, corriente, marker='o', color='blue', label='Descarga de condensador')
+plt.scatter(tiempo, corriente, marker='o', color='blue', label='Datos')
 plt.plot(arr_tiempo, funcion_exponencial(arr_tiempo, a_fit, b_fit), color='red', label='Regresión Exponencial')
 plt.xlabel('Tiempo [s]')
 plt.ylabel('Corriente [A]')
 plt.title('Gráfica de Dispersión: Corriente vs Tiempo')
 plt.legend()
-plt.grid(True)
 plt.show()
 
 

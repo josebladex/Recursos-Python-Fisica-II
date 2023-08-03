@@ -32,8 +32,8 @@ def grafico_dispersion_regresion(x, y, pendiente, interseccion):
 
 # Valores para corriente vs inverso de resistencia y Corriente vs Resistencia
 
-I = [1, 2, 4, 6, 8, 10, 12, 14]
-V = [0.011, 0.021, 0.042, 0.063, 0.084, 0.105, 0.125, 0.146]
+V = [1, 2, 4, 6, 8, 10, 12, 14]
+I = [0.011, 0.021, 0.042, 0.063, 0.084, 0.105, 0.125, 0.146]
 
 # Crear los np.array
 arr_V = np.array(V)
