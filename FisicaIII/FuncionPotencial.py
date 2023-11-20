@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 x_distancia = np.array([10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
-y_Intensidad = np.array([0.20, 0.30, 0.30, 0.45, 0.45, 0.63, 1.00, 1.90, 4.10, 11.00])
+y_Intensidad = np.array([11.00,4.10,1.90,1.00,0.63,0.45,0.45,0.30,0.30,0.20])
 
 def regresion_potencial(x, a, b):
     return a * np.power(x, b)   # y=a(x^b)
@@ -13,7 +13,7 @@ def regresion_potencial(x, a, b):
 # Parámetros de la regresión
 
 
-params, covariance = curve_fit(regresion_potencial, x_distancia, y_Intensidad, maxfev=10000, p0=[1, 1], bounds=([0, 0], [np.inf, np.inf]))
+params, covariance = curve_fit(regresion_potencial, x_distancia, y_Intensidad,)
 
 a, b = params  # Parámetros de la regresión
 
@@ -44,8 +44,8 @@ x_range = np.linspace(min(x_distancia), max(x_distancia), 100)
 plt.plot(x_range, regresion_potencial(x_range, a, b), label='Regresión Potencial', color='r')
 
 # Etiquetas de ejes y título
-plt.xlabel('Distancia')
-plt.ylabel('Intensidad')
+plt.xlabel('Distancia (cm)')
+plt.ylabel('Intensidad (Lux)')
 plt.title('Regresión Potencial de Intensidad vs. Distancia')
 
 # Muestra la leyenda
