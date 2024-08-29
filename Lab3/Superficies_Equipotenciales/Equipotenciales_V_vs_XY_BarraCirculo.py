@@ -14,7 +14,7 @@ array = [
   [2.8, 2.9, 3.2, 3.7, 4.2, 5.0, 5.7, 6.5, 7.4, 8.2, 9.1]
 ]
 
-# Convertir el array a un array NumPy
+
 potential_map = np.array(array)
 
 # Crear una malla de coordenadas para la superficie
@@ -22,7 +22,7 @@ x, y = np.meshgrid(np.arange(potential_map.shape[1]), np.arange(potential_map.sh
 
 # Graficar la superficie equipotencial
 plt.contour(x, y, potential_map, 50, cmap='viridis')  # Puedes ajustar el número de curvas (50 en este ejemplo)
-plt.colorbar(label='Diferencia de Potencial [Volts]')  # Agregar la barra de color y etiquetarla
+plt.colorbar(label='Diferencia de Potencial [Volts]')  
 plt.xlabel('Posición en X [Centimetros]')
 plt.ylabel('Posición en Y [Centimetros]')
 plt.title('Superficies Equipotenciales')

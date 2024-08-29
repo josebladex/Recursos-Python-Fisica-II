@@ -1,17 +1,16 @@
 /****************************************************************************************
  *                                Proyecto Final Fisica II                             *
- *              Universidad de Panamá - José Plata, Karen González, Joseph Chamarra    *
+ *                            Universidad de Panamá - José Plata    *
  **************************************************************************************/
 // Definición de pines utilizados en el programa
-#define pinAnalogo    0      // Pin analógico para medir el voltaje del condensador
-#define pinCarga      13     // Pin de carga del condensador
-#define pinDescarga   8      // Pin de descarga del condensador
+#define pinAnalogo    0      
+#define pinCarga      13     
+#define pinDescarga   8      
 
 // Variables para medir el tiempo
 unsigned long tiempoInicio;
 unsigned long tiempoTranscurrido;
 
-// Configuración inicial del programa
 void setup() {
   pinMode(pinCarga, OUTPUT);         // Establece el pin de carga como salida digital
   digitalWrite(pinCarga, LOW);       // Apaga la carga del condensador al principio
@@ -19,13 +18,13 @@ void setup() {
   Serial.println("Medición de Capacitancia"); // Imprime mensaje de inicio
 }
 
-// Bucle principal del programa
+
 void loop() {
   // Descarga completa del condensador
   pinMode(pinDescarga, OUTPUT);       // Establece el pin de descarga como salida
   digitalWrite(pinDescarga, LOW);     // Pone el pin de descarga en bajo
 
-  Serial.println("Descargando Capacitor ..."); // Imprime mensaje
+  Serial.println("Descargando Capacitor ..."); 
   
   // Espera hasta que el voltaje en el pin analógico sea 0
   while (analogRead(pinAnalogo) > 0) {
@@ -38,7 +37,7 @@ void loop() {
   
   tiempoInicio = micros(); // Registra el tiempo de inicio de carga
   digitalWrite(pinCarga, HIGH); // Activa la carga del condensador
-  Serial.println("Datos para análisis Gráfico: "); // Imprime mensaje
+  Serial.println("Datos para análisis Gráfico: "); 
   
   // 1019 equivale a aproximadamente el 99% de la carga del condensador
 
@@ -57,6 +56,6 @@ int i = 1;
     i++;
   }
   
-  Serial.println("}"); // Imprime mensaje
+  Serial.println("}"); // Imprime resultados en JSON
   digitalWrite(pinCarga, LOW); // Detiene la carga del condensador
 }

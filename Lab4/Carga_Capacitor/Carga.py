@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 
-# Datos proporcionados
+# Datos
 tiempo = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200,
           210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360, 370, 380,
           390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530]
@@ -24,7 +24,7 @@ carga = [89288.6, 156490.02, 225571.2, 323788.66, 340706.5, 385350.8, 437044.2, 
          885836.9, 887716.66, 889126.48, 890536.3, 891476.18, 892416.06, 892886.0, 893355.94, 893825.88, 894295.82,
          894295.82, 894295.82, 894765.76]
 
-# Convertir las listas a arrays de NumPy
+
 arr_tiempo = np.array(tiempo)
 arr_voltaje = np.array(voltaje)
 arr_corriente = np.array(corriente)
@@ -38,10 +38,10 @@ def exponential_func(t, Qmax, RC):
 params, covariance = curve_fit(exponential_func, arr_tiempo, arr_carga)
 
 
-# Obtener los parámetros ajustados
+#parámetros ajustados
 Qmax_fit, RC_fit = params
 
-# Coeficiente de correlación (R cuadrado)
+# Coeficiente de correlación
 residuals = arr_carga - exponential_func(arr_tiempo, Qmax_fit, RC_fit)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((arr_carga - np.mean(arr_carga))**2)
@@ -50,7 +50,7 @@ r_squared = 1 - (ss_res / ss_tot)
 print(f"R cuadrado: {r_squared:.2f}")
 
 
-# Gráfico de los datos originales y la curva ajustada
+# Gráfico
 plt.scatter(arr_tiempo, arr_carga, label='Datos')
 plt.plot(arr_tiempo, exponential_func(arr_tiempo, Qmax_fit, RC_fit), color='red', label='Regresión Exponencial')
 plt.xlabel('Tiempo [s]')
@@ -64,22 +64,22 @@ print("Q(t) =", (Qmax_fit*1000000), " * (1 - exp(-t /", RC_fit, "))")
 print("\nRedondeado se obtiene:")
 print(f"Q(t) = {(Qmax_fit*1000000):.2f} * (1 - exp(-t /{RC_fit:.2f}))")
 
-# Valor conocido de la capacitancia en microfaradios
+# capacitancia en microfaradios
 capacitancia_microfaradios = 4700
 print(f"\ncapacitancia conocida en microfaradios: {capacitancia_microfaradios}")
-# Convertir la capacitancia a faradios
+# capacitancia a faradios
 capacitancia_faradios = capacitancia_microfaradios * 1e-6
 
-# Calcular el valor de la resistencia en ohmios
+# valor de la resistencia en ohmios
 resistencia_ohmios = RC_fit / capacitancia_faradios
 
-# Calcular el valor de la resistencia en kiloohmios (kΩ)
+# valor de la resistencia en kilo-Ohmios (kΩ)
 resistencia_kilohmios = resistencia_ohmios / 1000
 
-# Valor redondeado en kΩ
+# redondeado en kΩ
 resistencia_kilohmios_redondeada = round(resistencia_kilohmios)
 
-# Imprimir el valor de la resistencia redondeada en kΩ
+# valor de la resistencia redondeada en kΩ
 print("Valor de la resistencia (R):", resistencia_kilohmios_redondeada, "kΩ")
 
 

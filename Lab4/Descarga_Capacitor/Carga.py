@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 
-# Datos proporcionados
+# Datos 
 tiempo = [10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0, 100.0, 110.0, 120.0, 130.0, 140.0, 150.0, 
           160.0, 170.0, 180.0, 190.0, 200.0, 210.0, 220.0, 230.0, 240.0, 250.0, 260.0, 270.0, 280.0, 290.0, 
           300.0, 310.0, 320.0, 330.0, 340.0, 350.0, 360.0, 370.0, 380.0, 390.0, 400.0, 410.0, 420.0, 430.0, 
@@ -32,7 +32,7 @@ carga = [789969.14, 730756.7, 675773.72, 620790.74, 572856.86, 528212.56, 487797
             9868.74, 9398.8, 8928.86, 8458.92, 7988.98, 7519.04, 7519.04, 7049.1, 6579.16, 6579.16, 6579.16, 6109.22, 
             6109.22, 5639.28, 5639.28, 5639.28, 5169.34, 5169.34, 4699.4, 4699.4, 4699.4, 4229.46]
 
-# Convertir las listas a arrays de NumPy
+
 arr_tiempo = np.array(tiempo)
 arr_voltaje = np.array(voltaje)
 arr_corriente = np.array(corriente)
@@ -42,14 +42,14 @@ arr_carga = np.array(carga)/1000000
 def exponential_func(x, a, b):
     return a * (np.exp(b*x))
 
-initial_guess = (1.0, -0.01)  # You can adjust these initial values based on your data
+initial_guess = (1.0, -0.01)  
 params, covariance = curve_fit(exponential_func, arr_tiempo, arr_carga, p0=initial_guess)
 
 
-# Obtener los parámetros ajustados
+# parámetros ajustados
 a_fit, b_fit = params
 
-# Coeficiente de correlación (R cuadrado)
+# Coeficiente de correlación 
 residuals = arr_carga - exponential_func(arr_tiempo, a_fit, b_fit)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((arr_carga - np.mean(arr_carga))**2)
@@ -58,7 +58,7 @@ r_squared = 1 - (ss_res / ss_tot)
 print(f"R cuadrado: {r_squared:.2f}")
 
 
-# Gráfico de los datos originales y la curva ajustada
+# Gráfico 
 plt.scatter(arr_tiempo, arr_carga, label='Datos')
 plt.plot(arr_tiempo, exponential_func(arr_tiempo, a_fit, b_fit), color='red', label='Regresión Exponencial')
 plt.xlabel('Tiempo [s]')
@@ -66,28 +66,28 @@ plt.ylabel('Carga [MC]')
 plt.legend()
 plt.show()
 
-# Imprimir la ecuación de la regresión
+# ecuación de la regresión
 print("\nEcuación de la regresión exponencial:")
 print("y=", (a_fit*1000000), " * (e^(", b_fit, "*x))")
 print("\nRedondeado y ajustando a la ecuacion de Q en descarga se obtiene:")
 print(f"Q(t) = {(a_fit*1000000):.2f} * (e^({b_fit:.2f}*t))")
 
-# Valor conocido de la capacitancia en microfaradios
+#  capacitancia en microfaradios
 capacitancia_microfaradios = 4700
 print(f"\ncapacitancia conocida en microfaradios: {capacitancia_microfaradios}")
-# Convertir la capacitancia a faradios
+# capacitancia a faradios
 capacitancia_faradios = capacitancia_microfaradios * 1e-6
 
-# Calcular el valor de la resistencia en ohmios
+#resistencia en ohmios
 resistencia_ohmios = 1 /(-1 *b_fit * capacitancia_faradios)
 
-# Calcular el valor de la resistencia en kiloohmios (kΩ)
+# resistencia en kiloohmios (kΩ)
 resistencia_kilohmios = resistencia_ohmios / 1000
 
-# Valor redondeado en kΩ
+# redondeado en kΩ
 resistencia_kilohmios_redondeada = round(resistencia_kilohmios)
 
-# Imprimir el valor de la resistencia redondeada en kΩ
+#resistencia redondeada en kΩ
 print("Valor de la resistencia (R):", resistencia_kilohmios_redondeada, "kΩ")
 
 

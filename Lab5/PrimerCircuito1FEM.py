@@ -6,15 +6,15 @@ def resolver_sistema(equations, I1, I2, I3, I4, I5, I6, R1, R2, R3, R4, R5):
 
     return sol
 
-# Definir las corrientes como Incógnitas Algebraicas
+# corrientes como Incógnitas
 I1, I2, I3, I4, I5, I6 = symbols('I1 I2 I3 I4 I5 I6')
-# Definir las constantes (resistencias en Ohms)
+# constantes (resistencias en Ohms)
 R1 = 100
 R2 = 200
 R3 = 150
 R4 = 300 
 R5 = 51
-# definir el voltaje del circuito
+# voltaje del circuito
 v = 20
 # Ingresar las ecuaciones manualmente como una lista de objetos Eq
 # Por ejemplo, si las ecuaciones son R1*I1 + R3*I3 = -v  => escribimos Eq(R1*I1 + R3*I3, -v)
@@ -29,18 +29,18 @@ equations = [
     Eq(I3 + I5, I4)   
 ]
 
-# Llamar a la función y obtener las soluciones
+# soluciones
 soluciones = resolver_sistema(equations, I1, I2, I3, I4, I5, I6, R1, R2, R3, R4, R5)
 
 Datos_teoricos = [Abs(soluciones[I1]), Abs(soluciones[I2]), Abs(soluciones[I3]), Abs(soluciones[I4]), Abs(soluciones[I5]), Abs(soluciones[I6])]
 
-# Mostrar las soluciones con cuatro decimales
+# soluciones con cuatro decimales
 print("\nDatos teóricos:")
 for i, dato in enumerate(Datos_teoricos):
     print(f"Corriente {i+1} = {dato.evalf():.4f}")
 
 
-# Definir un array con los valores experimentales
+# valores experimentales
 Datos_Experimentales = [0.094, 0.054, 0.041, 0.052, 0.092, 0.144]
 
 print("\nDatos Experimentales:")
@@ -55,7 +55,7 @@ for i in range(len(Datos_Experimentales)):
     error_porcentual = abs(Datos_Experimentales[i] - Datos_teoricos[i].evalf()) / Datos_teoricos[i].evalf() * 100
     errores_porcentuales.append(error_porcentual)
 
-# Mostrar los errores porcentuales
+# errores porcentuales
 print("\nErrores porcentuales:")
 for i, error in enumerate(errores_porcentuales):
     print(f"Error porcentual en Corriente {i+1} = {error:.2f}%")
